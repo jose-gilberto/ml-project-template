@@ -7,15 +7,15 @@
 """
 
 
-def main() -> None: # pragma: no cover
+def main() -> None:  # pragma: no cover
     """
     The main function executes on commands:
     `python -m project_name` and `$ project_name`
-    
+
     This is your program's entry point.
-    
+
     You can change this function to do whatever you want.
-    
+
     Examples:
         - Run a test suite
         - Run experiments
@@ -23,4 +23,4 @@ def main() -> None: # pragma: no cover
         - Run a command line application (Click, Typer, ArgParse)
         - List all available tasks
     """
-    print('This will do something.')
+    print("This will do something.")
