@@ -8,40 +8,40 @@ on:
 
   workflow_dispatch:
 
-  jobs:
-    linter:
-      strategy:
-        fail-fast: false
-        matrix:
-          python-version: [3.9]
-          os: [ubuntu-latest]
-      runs-on: ${{ matrix.os }}
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-python@v4
-          with:
-            python-version: ${{ matrix.python-version }}
-        - name: Install project
-          run: make install
-        - name: Run Linter
-          run: make lint
+jobs:
+  linter:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install project
+        run: make install
+      - name: Run Linter
+        run: make lint
 
-    tests_linux:
-      needs: linter
-      strategy:
-        fail-fast: false
-        matrix:
-          python-version: [3.9]
-          os: [ubuntu-latest]
-      runs-on: ${{ matrix.os }}
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-python@v4
-          with:
-            python-version: ${{ matrix.python-version }}
-        - name: Install project
-          run: make install
-        - name: Run tests
-          run: make test
-        - name: "Upload coverage to Codecov"
-          uses: codecov/codecov-action@v3
+  tests_linux:
+    needs: linter
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install project
+        run: make install
+      - name: Run tests
+        run: make test
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v3
