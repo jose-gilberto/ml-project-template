@@ -33,4 +33,4 @@ done
 
 mv project_name $name
 
-rm -rf .github/template.yaml
+rm -rf .github/template.yml
